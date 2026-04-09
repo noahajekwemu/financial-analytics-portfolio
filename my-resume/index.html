@@ -3,139 +3,745 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Resume</title>
+    <title>Noah Ajekwemu — Financial & Data Analytics Professional</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy: #0f2744;
+            --blue: #1a4a8a;
+            --accent: #c8922a;
+            --accent-light: #f0e0c0;
+            --light: #f5f7fa;
+            --mid: #e8edf4;
+            --text: #1a1a2e;
+            --muted: #5a6a82;
+            --white: #ffffff;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--light);
+            color: var(--text);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        /* ── HEADER ── */
+        .header {
+            background: var(--navy);
+            color: var(--white);
+            padding: 48px 60px 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -60px; right: -60px;
+            width: 300px; height: 300px;
+            border-radius: 50%;
+            background: rgba(200,146,42,0.12);
+        }
+
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: -40px; left: 30%;
+            width: 200px; height: 200px;
+            border-radius: 50%;
+            background: rgba(26,74,138,0.4);
+        }
+
+        .header-inner {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 32px;
+            align-items: start;
+        }
+
+        .name {
+            font-family: 'Playfair Display', serif;
+            font-size: 42px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            line-height: 1.1;
+            margin-bottom: 8px;
+        }
+
+        .name span {
+            color: var(--accent);
+        }
+
+        .title {
+            font-size: 14px;
+            font-weight: 500;
+            color: rgba(255,255,255,0.75);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 24px;
+        }
+
+        .badge {
+            background: rgba(200,146,42,0.2);
+            border: 1px solid rgba(200,146,42,0.4);
+            color: var(--accent-light);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .contact-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 13px;
+            color: rgba(255,255,255,0.8);
+        }
+
+        .contact-item .icon {
+            width: 18px;
+            height: 18px;
+            background: var(--accent);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            flex-shrink: 0;
+        }
+
+        .availability {
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 12px;
+            padding: 20px 24px;
+            text-align: center;
+            min-width: 180px;
+        }
+
+        .availability .status {
+            width: 10px; height: 10px;
+            background: #4caf50;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 6px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+
+        .availability p {
+            font-size: 11px;
+            color: rgba(255,255,255,0.6);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 4px;
+        }
+
+        .availability strong {
+            font-size: 13px;
+            color: #4caf50;
+        }
+
+        /* ── LAYOUT ── */
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0 60px 60px;
+            display: grid;
+            grid-template-columns: 1fr 280px;
+            gap: 40px;
+            align-items: start;
+        }
+
+        /* ── SECTION ── */
+        .section {
+            margin-top: 36px;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--navy);
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--accent);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title .dot {
+            width: 8px; height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        /* ── SUMMARY ── */
+        .summary {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 20px 24px;
+            border-left: 4px solid var(--accent);
+            font-size: 14px;
+            line-height: 1.8;
+            color: var(--text);
+            box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+        }
+
+        /* ── EXPERIENCE ── */
+        .job {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 20px 24px;
+            margin-bottom: 16px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+            position: relative;
+            border-top: 3px solid transparent;
+            transition: border-color 0.2s;
+        }
+
+        .job:hover {
+            border-top-color: var(--accent);
+        }
+
+        .job-header {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 12px;
+            margin-bottom: 6px;
+            align-items: start;
+        }
+
+        .job-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--navy);
+        }
+
+        .job-period {
+            background: var(--navy);
+            color: var(--white);
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        .job-company {
+            font-size: 13px;
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .job-company span {
+            color: var(--muted);
+            font-weight: 400;
+        }
+
+        .job ul {
+            padding-left: 16px;
+            margin-bottom: 12px;
+        }
+
+        .job ul li {
+            margin-bottom: 6px;
+            color: var(--text);
+            font-size: 13.5px;
+        }
+
+        .achievement {
+            background: var(--light);
+            border-radius: 8px;
+            padding: 14px 16px;
+            margin-top: 12px;
+        }
+
+        .achievement-title {
+            font-weight: 600;
+            color: var(--navy);
+            font-size: 13px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .achievement-title::before {
+            content: '★';
+            color: var(--accent);
+            font-size: 12px;
+        }
+
+        .achievement-row {
+            display: grid;
+            grid-template-columns: 80px 1fr;
+            gap: 4px 12px;
+            font-size: 12.5px;
+            margin-bottom: 6px;
+        }
+
+        .achievement-row .label {
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding-top: 2px;
+        }
+
+        .achievement-row .value {
+            color: var(--text);
+        }
+
+        /* ── SIDEBAR ── */
+        .sidebar {
+            padding-top: 36px;
+        }
+
+        .sidebar-card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+        }
+
+        .sidebar-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--navy);
+            margin-bottom: 14px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--accent);
+        }
+
+        /* ── EDUCATION ── */
+        .edu-item {
+            margin-bottom: 14px;
+            padding-bottom: 14px;
+            border-bottom: 1px solid var(--mid);
+        }
+
+        .edu-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .edu-degree {
+            font-weight: 600;
+            color: var(--navy);
+            font-size: 13px;
+            line-height: 1.4;
+        }
+
+        .edu-school {
+            color: var(--muted);
+            font-size: 12px;
+            margin-top: 2px;
+        }
+
+        .edu-year {
+            display: inline-block;
+            background: var(--accent);
+            color: var(--white);
+            font-size: 11px;
+            font-weight: 600;
+            padding: 2px 8px;
+            border-radius: 10px;
+            margin-top: 4px;
+        }
+
+        /* ── SKILLS ── */
+        .skill-group {
+            margin-bottom: 14px;
+        }
+
+        .skill-group-label {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 6px;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .skill-tag {
+            background: var(--light);
+            border: 1px solid var(--mid);
+            color: var(--navy);
+            padding: 3px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .skill-tag.primary {
+            background: var(--navy);
+            color: var(--white);
+            border-color: var(--navy);
+        }
+
+        /* ── METRICS ── */
+        .metrics {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .metric {
+            background: var(--light);
+            border-radius: 8px;
+            padding: 12px;
+            text-align: center;
+        }
+
+        .metric-value {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--navy);
+            line-height: 1;
+        }
+
+        .metric-label {
+            font-size: 10px;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 4px;
+        }
+
+        /* ── PRINT ── */
+        @media print {
+            body { background: white; font-size: 12px; }
+            .header { padding: 32px 40px; }
+            .container { padding: 0 40px 40px; }
+            .job { box-shadow: none; border: 1px solid #eee; }
+            .sidebar-card { box-shadow: none; border: 1px solid #eee; }
+        }
+
+        @media (max-width: 768px) {
+            .header { padding: 32px 24px; }
+            .header-inner { grid-template-columns: 1fr; }
+            .container { grid-template-columns: 1fr; padding: 0 24px 40px; }
+            .name { font-size: 32px; }
+        }
+    </style>
 </head>
 <body>
-    <h1>Ajekwemu Noah</h1>
-    <hr />
-    ,<img src="./assets/images/Passport.jpeg" height="100" alt="Passport Photo">
-    <h2>Summary</h2>
-    <p>A results-driven and strategic business leader with an MSc in Corporate Finance and a BSc in Banking and Finance, complemented by over 5 years of senior management experience and the Oil & Gas 
-        industry. Proven expertise in overseeing diverse business operations, driving growth, and leading high-performing teams. Adept at developing and implementing strategic plans, 
-        managing financial performance, and ensuring compliance with industry regulations</p>
-        <hr />
 
-    <h2>Education</h2>
-    <ul>
-        <li>Master of Science (MSc) in Corporate Finance, Rivers State University, Port-Harcourt. (2019)  </li>
-        <li>Bachelor of Science (BSc) in Banking and Finance, Rivers State University, Port-Harcourt. (2013  )</li>
-        <li>Ordinary National Diploma (OND) in Accounting, Rivers State Polytechnic, Port-Harcourt. (2005  )</li>
-    </ul>
+<!-- HEADER -->
+<div class="header">
+    <div class="header-inner">
+        <div>
+            <div class="name">Noah <span>Ajekwemu</span></div>
+            <div class="title">Financial Analyst &nbsp;·&nbsp; Data Analyst &nbsp;·&nbsp; Business Intelligence Expert</div>
+            <div class="badges">
+                <span class="badge">PhD Corporate Finance</span>
+                <span class="badge">10+ Years Experience</span>
+                <span class="badge">Excel · Power BI · MySQL · QuickBooks</span>
+                <span class="badge">Remote Worldwide</span>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-item">
+                    <div class="icon">📍</div>
+                    Nigeria — Available Remote Worldwide
+                </div>
+                <div class="contact-item">
+                    <div class="icon">💼</div>
+                    Open to Freelance & Full-Time Remote
+                </div>
+                <div class="contact-item">
+                    <div class="icon">🔗</div>
+                    github.com/noahajekwemu
+                </div>
+            </div>
+        </div>
+        <div class="availability">
+            <p>Status</p>
+            <div style="margin: 8px 0;">
+                <span class="status"></span>
+                <strong>Available</strong>
+            </div>
+            <p style="margin-top:12px;">Experience</p>
+            <strong style="color:var(--accent-light); font-size:20px;">10+</strong>
+            <p>Years</p>
+        </div>
+    </div>
+</div>
 
-<hr />
+<!-- MAIN CONTENT -->
+<div class="container">
 
+    <!-- LEFT COLUMN -->
+    <div class="main">
 
-        <h2>Work experience</h2>
-    <ul>
-        <li>
-            <h3>General Manager - Henco Ayosco Nigeria (Manufacturing) 2019 - 2022</h3>
-            <ul>
-              
-                <li>Built and maintained relationships with vendors and suppliers.</li>
-                <li>Recruited team members to maintain adequate staffing levels.</li>
-                <li>Coordinated staff training sessions to ensure compliance with company policies and procedures.</li>
-                <li>Developed strategies to improve operational efficiency, reduce costs, and maximize profitability.</li>
-                <li>Maintained files and filing, keeping sensitive information confidential.</li>
-                <li>Reviewed incoming documents for accuracy and completeness prior to processing.</li>
-                <li>Served as primary point of contact for facilitating operational and administrative inquiries.</li>
-            
-                
-                <h4>Achievements:</h4>
+        <!-- SUMMARY -->
+        <div class="section">
+            <div class="section-title"><span class="dot"></span>Professional Summary</div>
+            <div class="summary">
+                Results-driven Financial Analyst and Data Intelligence Professional with over 10 years of experience in corporate finance, accounting, and data analysis. Holds a PhD in Corporate Finance (2025) from Rivers State University. Combines deep financial expertise with advanced data analytics capabilities — including Excel, Power BI, MySQL, and QuickBooks — to deliver actionable insights and executive-level dashboards. Proven track record managing multi-million naira finance operations and delivering end-to-end BI solutions for public sector projects. Adept at translating complex financial data into clear strategic narratives for stakeholders.
+            </div>
+        </div>
+
+        <!-- EXPERIENCE -->
+        <div class="section">
+            <div class="section-title"><span class="dot"></span>Professional Experience</div>
+
+            <!-- Job 1 -->
+            <div class="job">
+                <div class="job-header">
+                    <div class="job-title">General Manager — Finance, Production & Operations</div>
+                    <div class="job-period">2019 – Present</div>
+                </div>
+                <div class="job-company">Ayosco Nigeria Ltd <span>· Manufacturing Industry</span></div>
                 <ul>
-                    <h5>Optimization of Distribution Strategy</h5>
-                        
-                        <h6>Objective:</h6>   
-                        <li> Improve operational efficiency and reduce selling costs amidst rising inflation, a saturated market with fixed selling prices, and high overhead costs related to vehicle repairs, sales rep pilferage, and fines.</li>  
-        
-                        <h6>Actions:</h6>
-                        <li> Implemented a strategic shift from retail distribution to focusing solely on dealers and registered suppliers. This included stopping direct retail distribution, thus reducing the complexities and costs associated with managing a larger fleet and retail network.</li>  
-
-                        <h6>Results:</h6>
-                        <li> Achieved a 20% reduction in total costs and a 15% increase in production efficiency within the first year. The new distribution strategy minimized overhead costs and improved overall operational efficiency.</li>  
-
-                    <h5>Shift Optimization for Cost Reduction </h5>  
-
-                        <h6>Objective:</h6>
-                            <li> Reduce production costs in response to rising generator repair costs, increasing diesel prices, and inadequate daytime power supply from the grid.</li>  
-
-                            <h6>Actions:</h6>
-                            <li> : Implemented a day and night shift system for production workers. Offered a 5% incentive for the night shift, taking advantage of more reliable power supply from the grid during nighttime.</li>  
-
-                            <h6>Results:</h6>
-                                <li> Achieved a 15% reduction in production costs by optimizing power usage and reducing reliance on costly diesel generators and repairs.</li>  
-                
+                    <li>Oversaw all financial operations including accounts payable, receivable, budgeting, and executive-level financial reporting.</li>
+                    <li>Managed production finance, ensuring cost control, variance analysis, and operational efficiency across departments.</li>
+                    <li>Developed monthly and quarterly financial reports for executive stakeholders and board review.</li>
+                    <li>Built and maintained relationships with vendors and suppliers, negotiating favourable payment terms.</li>
+                    <li>Recruited and trained high-performing teams, coordinating staff development aligned with company objectives.</li>
+                    <li>Implemented financial controls and internal audit procedures improving operational efficiency.</li>
                 </ul>
-            </ul>
-        </li>
-      
-        <li>
-            <h3>Admin Assistant - Yobel Integrated Services (Oil and Gas) 2015 - 2017</h3>
-            <ul>
-                <li>Supports the bid team in compiling necessary documents, ensuring compliance with bid requirements, and coordinating the submission process.</li>
-                <li>Coordinates procurement processes, manages relationships with suppliers, and ensures tenders are submitted in line with procurement guidelines.</li>
-                <li>Oversees the financial and commercial aspects of bids, ensuring cost-effective pricing and risk mitigation strategies are employed.</li>
-                <li>Maintained files and filing, keeping sensitive information confidential.</li>
-                <li>Provided administrative support to management staff, including scheduling meetings and appointments, preparing agendas, taking minutes, and maintaining records.</li>
-                <li>Maintained database of client contact information with accuracy and attention to detail.</li>
-                <li>Ensured timely review of contracts prior to submission and provided advice on contractual terms and conditions.</li>
-                <li>Managed document control system ensuring that only approved versions are released for submission purposes.</li>
-            </ul>
-        </li>
+                <div class="achievement">
+                    <div class="achievement-title">Distribution Strategy Optimisation</div>
+                    <div class="achievement-row">
+                        <span class="label">Objective</span>
+                        <span class="value">Improve operational efficiency and reduce selling costs amidst rising inflation and a saturated market.</span>
+                    </div>
+                    <div class="achievement-row">
+                        <span class="label">Action</span>
+                        <span class="value">Shifted distribution strategy from retail to dealers and registered suppliers only, reducing fleet complexity and overhead costs.</span>
+                    </div>
+                    <div class="achievement-row">
+                        <span class="label">Result</span>
+                        <span class="value"><strong>20% reduction in total costs</strong> and <strong>15% increase in production efficiency</strong> within the first year.</span>
+                    </div>
+                </div>
+                <div class="achievement" style="margin-top:10px;">
+                    <div class="achievement-title">Shift Optimisation for Cost Reduction</div>
+                    <div class="achievement-row">
+                        <span class="label">Objective</span>
+                        <span class="value">Reduce production costs driven by rising generator repair costs and increasing diesel prices.</span>
+                    </div>
+                    <div class="achievement-row">
+                        <span class="label">Action</span>
+                        <span class="value">Implemented a day/night shift system, offering a 5% night-shift incentive to leverage cheaper grid power supply overnight.</span>
+                    </div>
+                    <div class="achievement-row">
+                        <span class="label">Result</span>
+                        <span class="value"><strong>15% reduction in production costs</strong> by optimising power usage and reducing diesel generator reliance.</span>
+                    </div>
+                </div>
+            </div>
 
-        <li>
-            <h3>IT Technical Support Intern - Yobel Integrated Services (Oil and Gas) 2016 - 2016 </h3>
-            <ul>
-                <li>Installed and troubleshot hardware components such as printers, scanners, and other peripherals.</li>
-                <li>Diagnosed and resolved complex system issues in a timely manner.</li>
-                <li>Tracked all service requests utilizing ticketing system while following established SLAs.</li>
-                <li>Performed troubleshooting of hardware, software and network problems across multiple platforms including Windows servers, desktops and laptops.</li>
-                <li>Managed user accounts, group policies, file permissions, disk quotas and distributed file systems.</li>
-                <li>Installed, configured and maintained Windows Server 2008, 2012, 2016 in physical and virtual environments.</li>
-            </ul>
-        </li>
+            <!-- Job 2 -->
+            <div class="job">
+                <div class="job-header">
+                    <div class="job-title">Data Analyst & BI Consultant</div>
+                    <div class="job-period">2018 – 2022</div>
+                </div>
+                <div class="job-company">Mogaga Nigeria Ltd <span>· Data Analytics & Consulting</span></div>
+                <ul>
+                    <li>Led data cleaning, transformation, and analysis for the Benue State SUBEB project — a large-scale public sector education initiative.</li>
+                    <li>Designed and built professional interactive Power BI dashboards enabling real-time performance tracking for government stakeholders.</li>
+                    <li>Queried and managed large datasets using MySQL to generate structured reports supporting strategic decision-making.</li>
+                    <li>Delivered insight presentations to government clients and project managers, translating complex data into clear narratives.</li>
+                </ul>
+            </div>
 
-        <li>
-            <h3>Book Keeper - Henco Ayosco Nigeria (Manufacturing) 2005 - 2015 </h3>
-            <ul>
-                <li>Processed bills by recording invoices received from suppliers or vendors on accounting system database.</li>
-                <li>Processed bills by recording invoices received from suppliers or vendors on accounting system database.</li>
-                <li>Handled cash and deposits using proper accounting procedures and documentation.</li>
-                <li>Updated QuickBooks to reflect current financial records.</li>
+            <!-- Job 3 -->
+            <div class="job">
+                <div class="job-header">
+                    <div class="job-title">Admin Assistant & Procurement Coordinator</div>
+                    <div class="job-period">2015 – 2017</div>
+                </div>
+                <div class="job-company">Yobel Integrated Services <span>· Oil & Gas Industry</span></div>
+                <ul>
+                    <li>Supported bid team in compiling documents and coordinating tender submissions in compliance with procurement guidelines.</li>
+                    <li>Managed contracts, ensuring timely review and advice on contractual terms prior to submission.</li>
+                    <li>Maintained confidential document control systems and client database with accuracy.</li>
+                    <li>Provided administrative support to senior management including scheduling, agendas and minutes.</li>
+                </ul>
+            </div>
 
-                <h4>Achievements</h4>
-                    <ul>
-                        <h5>Financial System Upgrade</h5>
-                            <h6>Objective:</h6>
-                        <li>Enhance the accuracy and efficiency of financial record-keeping and reporting.</li>
-                            <h6>Actions:</h6> 
-                        <li>Led the transition from manual accounting processes to a more sophisticated, integrated financial software system. Conducted an assessment of available software solutions, selected the most suitable option.</li>
-                            <h6>Results:</h6>
-                        <li>Successfully implemented the new financial software, reducing manual errors by 50% and cutting the time required for month-end financial reporting by 30%.</li>
-                        <li>Improved accuracy in financial records and facilitated more timely and reliable financial reporting.</li>
-                    </ul>
-            </ul>
-        </li>
-    </ul>
-    
-<hr />
-    <h2>Skills</h2>
-    
-    <ul>
-        <li>Team Player</li>
-        <li>Time Management</li>
-        <li>Microsoft Office Suite (Word, Excel, PowerPoint)</li>
-        <li>Business Intelligence (Power BI)</li>
-        <li>Data Analyst (SQL)</li>
-        <li>Strong leadership and organizational skills</li>
-        <li>Excellent interpersonal, communication, negotiation, problem-solving, and decision-making skills</li>
-        <li>Budget and financial management</li>
-        <li>Knowledge management abilities using digital platforms</li>
-    </ul>
+            <!-- Job 4 -->
+            <div class="job">
+                <div class="job-header">
+                    <div class="job-title">Bookkeeper & Accounts Officer</div>
+                    <div class="job-period">2005 – 2015</div>
+                </div>
+                <div class="job-company">Ayosco Nigeria Ltd <span>· Manufacturing Industry</span></div>
+                <ul>
+                    <li>Processed supplier invoices and managed accounts payable/receivable using QuickBooks.</li>
+                    <li>Handled cash, deposits and reconciliations using proper accounting procedures and documentation.</li>
+                    <li>Maintained accurate financial records and supported month-end reporting processes.</li>
+                </ul>
+                <div class="achievement">
+                    <div class="achievement-title">Financial System Upgrade</div>
+                    <div class="achievement-row">
+                        <span class="label">Objective</span>
+                        <span class="value">Enhance accuracy and efficiency of financial record-keeping and reporting.</span>
+                    </div>
+                    <div class="achievement-row">
+                        <span class="label">Action</span>
+                        <span class="value">Led transition from manual accounting to integrated financial software. Assessed solutions, selected and implemented the best fit.</span>
+                    </div>
+                    <div class="achievement-row">
+                        <span class="label">Result</span>
+                        <span class="value"><strong>50% reduction in manual errors</strong> and <strong>30% faster month-end reporting</strong> after implementation.</span>
+                    </div>
+                </div>
+            </div>
 
-<hr />
-<p><a href="./public/contact.html">Contact</a> <a href="./public/hobbies.html">Hobbies</a></p>
- <hr />
+        </div>
+    </div>
 
+    <!-- RIGHT SIDEBAR -->
+    <div class="sidebar">
+
+        <!-- KEY METRICS -->
+        <div class="sidebar-card">
+            <div class="sidebar-title">At a Glance</div>
+            <div class="metrics">
+                <div class="metric">
+                    <div class="metric-value">10+</div>
+                    <div class="metric-label">Years Finance</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-value">PhD</div>
+                    <div class="metric-label">Corp. Finance</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-value">5+</div>
+                    <div class="metric-label">Data Projects</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-value">4</div>
+                    <div class="metric-label">Core Tools</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- EDUCATION -->
+        <div class="sidebar-card">
+            <div class="sidebar-title">Education</div>
+            <div class="edu-item">
+                <div class="edu-degree">PhD — Corporate Finance</div>
+                <div class="edu-school">Rivers State University, Port Harcourt</div>
+                <span class="edu-year">2025</span>
+            </div>
+            <div class="edu-item">
+                <div class="edu-degree">MSc — Corporate Finance</div>
+                <div class="edu-school">Rivers State University, Port Harcourt</div>
+                <span class="edu-year">2019</span>
+            </div>
+            <div class="edu-item">
+                <div class="edu-degree">BSc — Banking & Finance</div>
+                <div class="edu-school">Rivers State University, Port Harcourt</div>
+                <span class="edu-year">2013</span>
+            </div>
+            <div class="edu-item">
+                <div class="edu-degree">OND — Accounting</div>
+                <div class="edu-school">Rivers State Polytechnic, Port Harcourt</div>
+                <span class="edu-year">2005</span>
+            </div>
+        </div>
+
+        <!-- TECHNICAL SKILLS -->
+        <div class="sidebar-card">
+            <div class="sidebar-title">Technical Skills</div>
+            <div class="skill-group">
+                <div class="skill-group-label">Data & Analytics</div>
+                <div class="skill-tags">
+                    <span class="skill-tag primary">Microsoft Excel</span>
+                    <span class="skill-tag primary">Power BI</span>
+                    <span class="skill-tag primary">MySQL</span>
+                </div>
+            </div>
+            <div class="skill-group">
+                <div class="skill-group-label">Finance & Accounting</div>
+                <div class="skill-tags">
+                    <span class="skill-tag primary">QuickBooks</span>
+                    <span class="skill-tag">Financial Modeling</span>
+                    <span class="skill-tag">Budgeting & Forecasting</span>
+                    <span class="skill-tag">AP / AR Management</span>
+                </div>
+            </div>
+            <div class="skill-group">
+                <div class="skill-group-label">Platforms</div>
+                <div class="skill-tags">
+                    <span class="skill-tag">Microsoft Office Suite</span>
+                    <span class="skill-tag">Google Workspace</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- SOFT SKILLS -->
+        <div class="sidebar-card">
+            <div class="sidebar-title">Core Competencies</div>
+            <div class="skill-tags" style="gap:6px;">
+                <span class="skill-tag">Strategic Planning</span>
+                <span class="skill-tag">Team Leadership</span>
+                <span class="skill-tag">Data Storytelling</span>
+                <span class="skill-tag">Executive Reporting</span>
+                <span class="skill-tag">Stakeholder Management</span>
+                <span class="skill-tag">Problem Solving</span>
+                <span class="skill-tag">Remote Collaboration</span>
+            </div>
+        </div>
+
+        <!-- AVAILABILITY -->
+        <div class="sidebar-card" style="background:var(--navy); color:var(--white);">
+            <div class="sidebar-title" style="color:var(--accent-light); border-color:var(--accent);">Hire Me</div>
+            <p style="font-size:12.5px; color:rgba(255,255,255,0.8); line-height:1.7; margin-bottom:12px;">
+                Available for freelance projects, part-time and full-time remote engagements worldwide.
+            </p>
+            <div style="font-size:12px; color:rgba(255,255,255,0.6);">
+                <div style="margin-bottom:6px;">💼 &nbsp;Upwork · Fiverr · LinkedIn</div>
+                <div style="margin-bottom:6px;">🌍 &nbsp;Remote — All time zones</div>
+                <div>🔗 &nbsp;github.com/noahajekwemu</div>
+            </div>
+        </div>
+
+    </div>
+</div>
 
 </body>
 </html>
